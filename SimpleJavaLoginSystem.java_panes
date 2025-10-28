@@ -1,0 +1,98 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package simplejavaloginsystem;
+import java.util.Scanner;
+/**
+ *
+ * @author jesa mae panes
+ */
+public class SimpleJavaLoginSystem {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        
+       Scanner sc = new Scanner(System.in);
+
+   String[][] users = new String[100][2]; // [username][password]
+   int userCount = 0;
+
+   while (true) {
+   System.out.println("==== LOGIN SYSTEM ====");
+   System.out.println("[1] Login");
+   System.out.println("[2] Register");
+   System.out.println("[3] Exit");
+   System.out.print("Choose an option: ");
+   String choice = sc.nextLine();
+
+   if (choice.equals("1")) {
+       // LOGIN
+       System.out.print("Enter username: ");
+       String username = sc.nextLine();
+       System.out.print("Enter password: ");
+       String password = sc.nextLine();
+
+         boolean found = false;
+         for (int i = 0; i < userCount; i++) {
+         if (users[i][0].equals(username) && users[i][1].equals(password)) {
+         found = true;
+         break;
+                    }
+                }
+
+     if (found) {
+     System.out.println("Hello, " + username + "!");
+     } else {
+     System.out.println("Invalid username or password!");
+       }
+     System.out.println();
+
+     } else if (choice.equals("2")) {
+   // REGISTER
+   System.out.print("Enter new username: ");
+   String newUser = sc.nextLine();
+     boolean exists = false;
+     for (int i = 0; i < userCount; i++) {
+     if (users[i][0].equals(newUser)) {
+        exists = true;
+     break;
+                    }
+                }
+
+    if (exists) {
+    System.out.println("Username already exists!");
+    } else {
+    System.out.print("Enter password: ");
+    String newPass = sc.nextLine();
+    System.out.print("Confirm password: ");
+   String confirmPass = sc.nextLine();
+
+    if (!newPass.equals(confirmPass)) {
+     System.out.println("Passwords do not match!");
+       } else {
+        users[userCount][0] = newUser;
+        users[userCount][1] = newPass;
+         userCount++;
+         System.out.println("Registration successful!");
+         }
+         }
+                System.out.println();
+
+            } else if (choice.equals("3")) {
+                // EXIT
+                System.out.println("Goodbye!");
+                break;
+            } else {
+                System.out.println("Invalid option. Try again!\n");
+            }
+        }
+
+        sc.close();
+
+    }
+    
+}
